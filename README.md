@@ -1,6 +1,6 @@
 # Basic Vue frontend app to store notes
 
-[Live Site](https://dulcet-cuchufli-1e20c8.netlify.app/)
+[Live Site](https://transcendent-lebkuchen-52f8ba.netlify.app/)
 
 Run the app:
 
