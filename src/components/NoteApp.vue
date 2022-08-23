@@ -49,7 +49,7 @@
             <v-btn
               icon
               dark
-              @click="dialog = false"
+              @click="closeNote()"
             >
               <v-icon>mdi-close</v-icon>
             </v-btn>
@@ -188,7 +188,6 @@
           this.notes = JSON.parse(localStorage.notes)
         }
         
-
         // Reset status
         this.edit = false
         this.dialog = false;
@@ -202,7 +201,15 @@
         this.noteTitle = this.notes[index].title;
         this.noteContent = this.notes[index].content;
         this.dialog = true;
-      }
+      },
+      closeNote: function() {
+        this.dialog = false;
+        this.index = null;
+        this.edit = false;
+        this.noteTitle = "";
+        this.noteContent = "";
+        console.log("closed")
+      } 
     },
     mounted() {
       if(localStorage.notes) {

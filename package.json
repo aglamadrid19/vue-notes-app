@@ -1,5 +1,5 @@
 {
-  "name": "hello-world",
+  "name": "vue-note-app",
   "version": "0.1.0",
   "private": true,
   "test": "vitest",
