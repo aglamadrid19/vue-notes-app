@@ -80,8 +80,8 @@
       </v-dialog>
 
       <v-btn icon>
-        <v-icon v-if="loved" @click="loved = !loved" color="warning">mdi mdi-heart </v-icon>
-        <v-icon v-else @click="loved = !loved">mdi mdi-heart-outline</v-icon>
+        <v-icon v-if="loved" @click="lovedNote()" color="warning">mdi mdi-heart </v-icon>
+        <v-icon v-else @click="lovedNote()">mdi mdi-heart-outline</v-icon>
       </v-btn>
     </v-app-bar>
 
@@ -152,7 +152,6 @@
       drawer: false,
       dialog: false,
       edit: false,
-      group: null,
       loved: false,
       notes: [],
       noteTitle: "",
@@ -160,6 +159,16 @@
       index: null
     }),
     methods: {
+      lovedNote: function() {
+        if(localStorage.loved == 1) {
+          localStorage.loved = 0
+          this.loved = false
+        }
+        else {
+          localStorage.loved = 1
+          this.loved = true
+        }
+      },
       eraseNote: function(noteId) {
         this.notes.splice(noteId, 1);
         localStorage.notes = JSON.stringify(this.notes)
@@ -202,10 +211,12 @@
         this.edit = false;
         this.noteTitle = "";
         this.noteContent = "";
-        console.log("closed")
       } 
     },
     mounted() {
+      if(localStorage.loved == 1) {
+        this.loved = true
+      }
       if(localStorage.notes) {
         this.notes = JSON.parse(localStorage.notes)
       }
