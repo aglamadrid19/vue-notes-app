@@ -113,9 +113,6 @@
         <v-btn color="warning" class="mr-3" icon href="https://github.com/aglamadrid19" target="_blank">
           <v-icon>mdi mdi-github</v-icon>
         </v-btn>
-        <v-btn color="warning" class="ml-3" icon href="https://twitter.com/aglamadrid19" target="_blank">
-          <v-icon>mdi mdi-twitter</v-icon>
-        </v-btn>
       </div>
     </v-navigation-drawer>
 
