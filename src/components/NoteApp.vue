@@ -119,8 +119,8 @@
     <!-- Page content -->
     <v-main>
       <v-container>
-        <v-row>
-          <h2 v-if="notes.length === 0" class="text-xs-center">No Notes found. Create a new one!</h2>
+        <v-row align="center" justify="center">
+          <h2 v-if="notes.length === 0">No Notes found.<br>Create a new one!</h2>
 
           <template v-else v-for="(note, index) in notes" :key="index">
             <v-col cols="12">
