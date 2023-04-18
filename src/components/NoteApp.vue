@@ -3,7 +3,7 @@
     <!-- Top menu -->
     <v-app-bar
       color="teal-darken-4"
-      image="https://picsum.photos/1920/1080?random"
+      image="https://picsum.photos/800/600?random"
     >
       <template v-slot:image>
         <v-img
@@ -19,7 +19,7 @@
         <v-btn icon disabled style="color: white; opacity: 1;">
           <v-icon>mdi mdi-note</v-icon>
         </v-btn>
-        Notes App
+        Notes
       </v-app-bar-title>
 
       <v-spacer></v-spacer>

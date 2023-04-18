@@ -1,5 +1,5 @@
 {
-  "name": "vue-note-app",
+  "name": "Notes",
   "version": "0.1.0",
   "private": true,
   "test": "vitest",
