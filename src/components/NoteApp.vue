@@ -16,9 +16,6 @@
       </template>
 
       <v-app-bar-title id="logo">
-        <v-btn icon disabled style="color: white; opacity: 1;">
-          <v-icon>mdi mdi-note</v-icon>
-        </v-btn>
         Notes
       </v-app-bar-title>
 
