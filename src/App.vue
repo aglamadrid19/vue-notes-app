@@ -7,7 +7,6 @@
 </template>
 
 <script>
-
 import NoteApp from './components/NoteApp.vue';
 
 export default {
