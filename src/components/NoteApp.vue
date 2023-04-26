@@ -1,47 +1,18 @@
-<template>
-  <v-layout>
-    <!-- Page content -->
-    <v-main>
-      <v-container>
-        <v-row justify="center">
-          <h2 v-if="notes.length === 0" class="mt-5 text-center">No Notes found.<br>Create a new one</h2>
-
-          <template v-else v-for="(note, index) in notes" :key="index">
-            <v-col cols="12">
-              <v-card
-                elevation="3"
-                :title="`${note.title}`"
-              >
-                <v-card-text>{{ note.content }}</v-card-text>
-                <v-card-actions>
-                  <v-btn color="warning" icon @click="editNote(index)">
-                    <v-icon>mdi mdi-tooltip-edit</v-icon>
-                  </v-btn>
-                  <v-btn color="warning" icon @click="eraseNote(index)">
-                    <v-icon>mdi mdi-delete</v-icon>
-                  </v-btn>
-                </v-card-actions>
-              </v-card>
-            </v-col>
-          </template>
-        </v-row>
-      </v-container>
-    </v-main>
-  </v-layout>
-</template>
-
 <script>
+  import MainMenu from './MainMenu.vue'
   export default {
-    data: () => ({
-      drawer: false,
-      dialog: false,
-      edit: false,
-      loved: false,
-      notes: [],
-      noteTitle: "",
-      noteContent: "",
-      index: null
-    }),
+    data() {
+      return {
+        drawer: false,
+        dialog: false,
+        edit: false,
+        loved: false,
+        notes: [],
+        noteTitle: "",
+        noteContent: "",
+        index: null
+      }
+    },
     methods: {
       lovedNote: function() {
         if(localStorage.loved == 1) {
@@ -107,6 +78,40 @@
     }
   }
 </script>
+
+<template>
+  <MainMenu></MainMenu>
+  <v-layout>
+    <!-- Page content -->
+    <v-main>
+      <v-container>
+        <v-row justify="center">
+          <h2 v-if="notes.length === 0" class="mt-5 text-center">No Notes found.<br>Create a new one</h2>
+
+          <template v-else v-for="(note, index) in notes" :key="index">
+            <v-col cols="12">
+              <v-card
+                elevation="3"
+                :title="`${note.title}`"
+              >
+                <v-card-text>{{ note.content }}</v-card-text>
+                <v-card-actions>
+                  <v-btn color="warning" icon @click="editNote(index)">
+                    <v-icon>mdi mdi-tooltip-edit</v-icon>
+                  </v-btn>
+                  <v-btn color="warning" icon @click="eraseNote(index)">
+                    <v-icon>mdi mdi-delete</v-icon>
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-col>
+          </template>
+
+        </v-row>
+      </v-container>
+    </v-main>
+  </v-layout>
+</template>
 
 <style scoped>
 .dialog-bottom-transition-enter-active,

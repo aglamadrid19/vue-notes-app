@@ -16,8 +16,10 @@ export default {
     NoteApp
 },
 
-  data: () => ({
-    //
-  }),
+  data() {
+    return {
+      //
+    }
+  },
 }
 </script>
