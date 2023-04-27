@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <v-main>
+      <MainMenu></MainMenu>
       <NoteApp></NoteApp>
     </v-main>
   </v-app>
@@ -8,12 +9,15 @@
 
 <script>
 import NoteApp from './components/NoteApp.vue';
+import MainMenu from './components/MainMenu.vue'
 
 export default {
   name: 'App',
 
   components: {
-    NoteApp
+    MainMenu,
+    NoteApp,
+    
 },
 
   data() {

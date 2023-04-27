@@ -1,5 +1,5 @@
 <script>
-  import MainMenu from './MainMenu.vue'
+  
   export default {
     data() {
       return {

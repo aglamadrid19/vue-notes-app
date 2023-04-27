@@ -1,11 +1,12 @@
 <script>
-import SideMenu from './SideMenu.vue'
+// import SideMenu from './SideMenu.vue'
 
   export default {
     components: {
-      SideMenu
+      // SideMenu
     },
     data: () => ({
+      drawer: null,
       dialog: false,
       edit: false,
       loved: false,
@@ -83,7 +84,6 @@ import SideMenu from './SideMenu.vue'
   <!-- Top menu -->
   <v-app-bar
     color="teal-darken-4"
-    image="https://picsum.photos/1920/1080?random"
   >
     <template v-slot:image>
       <v-img
@@ -91,10 +91,9 @@ import SideMenu from './SideMenu.vue'
       ></v-img>
     </template>
 
-
-
     <template v-slot:prepend>
-      <SideMenu></SideMenu>
+      <!-- Activate side menu -->
+      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
     </template>
 
     <v-app-bar-title id="logo">
@@ -166,5 +165,39 @@ import SideMenu from './SideMenu.vue'
       <v-icon v-else @click="lovedNote()">mdi mdi-heart-outline</v-icon>
     </v-btn>
   </v-app-bar>
+    
+  <!-- Side menu -->
+  <v-navigation-drawer v-model="drawer" temporary>
+    <div class="d-flex justify-center mt-5">
+      <v-list nav dense>
+        <v-avatar size="175">
+          <v-img src="./../assets/profile-pic.jpg"></v-img>
+        </v-avatar>
+      </v-list>
+    </div>
+
+    <div class="d-flex justify-center mt-5">
+      <v-btn color="warning" class="mr-3" icon href="https://github.com/aglamadrid19" target="_blank">
+        <v-icon>mdi mdi-github</v-icon>
+      </v-btn>
+    </div>
+  </v-navigation-drawer>
 </template>
 
+<style scoped>
+.dialog-bottom-transition-enter-active,
+.dialog-bottom-transition-leave-active {
+  transition: transform .2s ease-in-out;
+}
+.v-layout {
+    height: 100%;
+}
+.v-toolbar {
+  align-items: flex-start;
+  display: flex;
+  flex: 0 1 auto;
+}
+.center-text {
+  text-align: center;
+}
+</style>
