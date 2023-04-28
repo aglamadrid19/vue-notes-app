@@ -3,10 +3,8 @@
   export default {
     data() {
       return {
-        drawer: false,
         dialog: false,
         edit: false,
-        loved: false,
         notes: [],
         noteTitle: "",
         noteContent: "",
@@ -14,16 +12,6 @@
       }
     },
     methods: {
-      lovedNote: function() {
-        if(localStorage.loved == 1) {
-          localStorage.loved = 0
-          this.loved = false
-        }
-        else {
-          localStorage.loved = 1
-          this.loved = true
-        }
-      },
       eraseNote: function(noteId) {
         this.notes.splice(noteId, 1);
         localStorage.notes = JSON.stringify(this.notes)
@@ -54,6 +42,7 @@
         this.noteContent = "";
       },
       editNote: function(index) {
+        console.log("edit note")
         this.index = index;
         this.edit = true;
         this.noteTitle = this.notes[index].title;
@@ -69,9 +58,6 @@
       } 
     },
     mounted() {
-      if(localStorage.loved == 1) {
-        this.loved = true
-      }
       if(localStorage.notes) {
         this.notes = JSON.parse(localStorage.notes)
       }
@@ -85,9 +71,70 @@
     <!-- Page content -->
     <v-main>
       <v-container>
-        <v-row justify="center">
-          <h2 v-if="notes.length === 0" class="mt-5 text-center">No Notes found.<br>Create a new one</h2>
+        <v-row align="center">
+          <!-- New / Edit Note dialog -->
+          <v-dialog
+            v-model="dialog"
+            fullscreen
+            :scrim="true"
+          >
 
+            <template v-slot:activator="{ props }">
+              <v-col cols="12" class="d-flex justify-center">
+                <v-btn
+                  icon
+                  v-bind="props"
+                >
+                  <v-icon>mdi mdi-note-plus</v-icon>
+                </v-btn>
+              </v-col>
+            </template>
+
+            <v-card>
+              <v-toolbar
+                dark
+                color="warning"
+              >
+                <v-btn
+                  icon
+                  dark
+                  @click="closeNote()"
+                >
+                  <v-icon>mdi-close</v-icon>
+                </v-btn>
+                <v-toolbar-title v-if="edit === false">New Note</v-toolbar-title>
+                <v-toolbar-title v-else>Edit Note</v-toolbar-title>
+                <v-spacer></v-spacer>
+                <v-toolbar-items>
+                  <v-btn
+                    text
+                    @click="saveNote(index)"
+                  >
+                    Save
+                  </v-btn>
+                </v-toolbar-items>
+              </v-toolbar>
+              <v-container>
+                <v-text-field
+                  v-model="noteTitle"
+                  class="mt-4"
+                  label="Title"
+                  variant="outlined"
+                ></v-text-field>
+                <v-textarea
+                  v-model="noteContent"
+                  background-color="light-blue"
+                  color="black"
+                  label="Note"
+                ></v-textarea>
+              </v-container>
+            </v-card>
+          </v-dialog>
+
+          <v-col v-if="notes.length === 0" cols="12">
+            <h2 class="mt-5 text-center">no notes found<br>create a new one</h2>
+          </v-col>
+          
           <template v-else v-for="(note, index) in notes" :key="index">
             <v-col cols="12">
               <v-card
@@ -114,10 +161,6 @@
 </template>
 
 <style scoped>
-.dialog-bottom-transition-enter-active,
-.dialog-bottom-transition-leave-active {
-  transition: transform .2s ease-in-out;
-}
 .v-layout {
     height: 100%;
 }
